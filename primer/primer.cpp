@@ -6,6 +6,6 @@
 
 using namespace std;
 
-void hwo(){
+void hello(){
     cout<<"Hello Wo~~~rld!"<<endl;
 }

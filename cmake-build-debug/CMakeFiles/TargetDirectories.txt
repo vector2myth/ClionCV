@@ -1,0 +1,3 @@
+/Users/2mythvector/ClionCV/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/2mythvector/ClionCV/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/2mythvector/ClionCV/cmake-build-debug/CMakeFiles/ClionCV.dir

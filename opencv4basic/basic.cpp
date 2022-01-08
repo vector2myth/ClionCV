@@ -118,3 +118,79 @@ void myPyramid(){
 
     waitKey(0);
 }
+
+// 图像阈值转换
+void myThreshold(){
+    Mat img= imread("/Users/2mythvector/ClionCV/images/rocket.png");
+    if (img.empty()){
+        cout<<"请确认图片文件名称是否正确！"<<endl;
+        return;
+    }
+
+    Mat gray;
+    cvtColor(img,gray,COLOR_BGR2GRAY);
+    Mat img_B,img_B_V,gray_B,gray_B_V,gray_T,gray_T_V,gray_TRUNC;
+
+    /*
+     * 图像二值化（ Image Binarization）就是将图像上的像素点的灰度值设置为0或255，
+     * 也就是将整个图像呈现出明显的黑白效果的过程。
+     * 在数字图像处理中，二值图像占有非常重要的地位，图像的二值化使图像中数据量大为减少，从而能凸显出目标的轮廓。
+     * */
+    // 彩色图像二值化
+    threshold(img,img_B,125,255,THRESH_BINARY);
+    threshold(img,img_B_V,125,255,THRESH_BINARY_INV);   // 二值化取反
+    imshow("img_B",img_B);
+    imshow("img_B_V",img_B_V);
+
+    /*
+     * THRESH_TOZERO表示将灰度值与阈值thresh进行比较，
+     * 如果灰度值大于thresh则将保持不变，否则将灰度值改为0。
+     * THRESH_TOZERO_INV方法与其相反，将灰度值与阈值thresh进行比较，
+     * 如果灰度值小于等于thresh则将保持不变，否则将灰度值改为0。
+     * */
+    // 灰度图像TOZERO变换
+    threshold(gray,gray_T,125,255,THRESH_TOZERO);
+    threshold(gray,gray_T_V,125,255,THRESH_TOZERO_INV);
+    imshow("gray_T",gray_T);
+    imshow("gray_T_V",gray_T_V);
+
+    /*
+     * THRESH_TRUNC
+     * 重新给图像的灰度值设定一个新的最大值，将大于新的最大值的灰度值全部重新设置为新的最大值，
+     * 具体逻辑为将灰度值与阈值thresh进行比较，
+     * 如果灰度值大于thresh则将灰度值改为thresh，否则保持灰度值不变
+     * */
+    // 灰度图像TRUNC变换
+    threshold(gray,gray_TRUNC,125,255,THRESH_TRUNC);
+    imshow("gray_TRUNC",gray_TRUNC);
+
+    /*
+     * 大津法（OTSU）是一种确定图像二值化分割阈值的算法,
+     * 按图像的灰度特性，将图像分成背景和前景两部分,
+     * 求图像全局阈值的最佳方法，适用于大部分需要求图像全局阈值的场合。
+     * */
+
+    /*
+     * 三角法求阈值
+     * 该方法是使用直方图数据，基于纯几何方法来寻找最佳阈值，
+     * 它的成立条件是假设直方图最大波峰在靠近最亮的一侧，然后通过三角形求得最大直线距离，
+     * 根据最大直线距离对应的直方图灰度等级即为分割阈值
+     * */
+    // 灰度图像大津法和三角形法二值化
+    Mat img_Thr= imread("/Users/2mythvector/ClionCV/images/threshold.png",IMREAD_GRAYSCALE);
+    Mat img_Thr_0,img_Thr_T;
+    threshold(img_Thr,img_Thr_0,100,255,THRESH_BINARY|THRESH_OTSU);
+    threshold(img_Thr,img_Thr_T,125,255,THRESH_BINARY|THRESH_TRIANGLE);
+    imshow("img_Thr",img_Thr);
+    imshow("img_Thr_0",img_Thr_0);
+    imshow("img_Thr_T",img_Thr_T);
+
+    // 灰度图像自适应二值化
+    Mat adaptive_mean,adaptive_gauss;
+    adaptiveThreshold(img_Thr,adaptive_mean,255,ADAPTIVE_THRESH_MEAN_C,THRESH_BINARY,55,0);
+    adaptiveThreshold(img_Thr,adaptive_gauss,255,ADAPTIVE_THRESH_GAUSSIAN_C,THRESH_BINARY,55,0);
+    imshow("adaptive_mean",adaptive_mean);
+    imshow("adaptive_gauss",adaptive_gauss);
+
+    waitKey(0);
+}

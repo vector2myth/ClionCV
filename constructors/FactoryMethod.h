@@ -84,7 +84,7 @@ public:
 };
 
 void runFactoryMethod(){
-    cout<<"工厂方法类"<<endl;
+    cout<<"工厂方法类Factory Method"<<endl;
 
     shared_ptr<AbstractFactory> fac= make_shared<ManFactory>();
     shared_ptr<AbstractProductFM> product= shared_ptr<AbstractProductFM>(fac->getProduct());

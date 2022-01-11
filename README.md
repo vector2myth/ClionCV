@@ -4,7 +4,7 @@
 
 `有时候也会用来记录的编程成长记录吧`
 
-`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`
+`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`
 
 ## 第7章 类
 > 类的基本思想是数据抽象（data abstraction）和封装（encapsulation）

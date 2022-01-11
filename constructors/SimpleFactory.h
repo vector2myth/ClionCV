@@ -10,16 +10,16 @@
 using namespace std;
 
 // 抽象产品类Abstract Product
-class AbstractProduct{
+class AbstractProductSF{
 public:
-    AbstractProduct(){
+    AbstractProductSF(){
 
     }
     /*
      * virtual方法的使用场景：父类告诉子类，继承接口，修改实现，从而可以面向接口编程。
      * ~析构函数，在函数调用结束的时候使用，类的析构函数不能被继承
      * */
-    virtual ~AbstractProduct(){
+    virtual ~AbstractProductSF(){
         cout<<"结束"<<endl;
     };
     // 抽象方法
@@ -27,7 +27,7 @@ public:
     virtual void play()=0;
 };
 // 具体产品类-1
-class Product1:public AbstractProduct{
+class Product1:public AbstractProductSF{
 public:
     Product1(){
         printName();
@@ -45,7 +45,7 @@ public:
     }
 };
 // 具体产品类-2
-class Product2:public AbstractProduct{
+class Product2:public AbstractProductSF{
 public:
     Product2(){
         printName();
@@ -65,12 +65,12 @@ public:
 
 class Factory{
 public:
-    shared_ptr<AbstractProduct> getProduct(string productName){
-        shared_ptr<AbstractProduct> pro;
+    shared_ptr<AbstractProductSF> getProduct(string productName){
+        shared_ptr<AbstractProductSF> pro;
         if (productName=="Product1"){
-            pro= shared_ptr<AbstractProduct>(new Product1);
+            pro= shared_ptr<AbstractProductSF>(new Product1);
         }else if (productName=="Product2"){
-            pro= shared_ptr<AbstractProduct>(new Product2);
+            pro= shared_ptr<AbstractProductSF>(new Product2);
         }
         return pro;
     }
@@ -78,7 +78,7 @@ public:
 
 void runSimpleFactory(){
     shared_ptr<Factory> fac= make_shared<Factory>();    // 用make_shared来创建对象
-    shared_ptr<AbstractProduct> product=fac->getProduct("Product1");
+    shared_ptr<AbstractProductSF> product=fac->getProduct("Product1");
     fac= make_shared<Factory>();
     product=fac->getProduct("Product2");
 }

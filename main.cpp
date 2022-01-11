@@ -5,9 +5,10 @@
 #include <memory>
 // 23种设计方法
 #include "constructors/SimpleFactory.h"
+#include "constructors/FactoryMethod.h"
 
 int main() {
-    runSimpleFactory();
+    runFactoryMethod();
 
     return 0;
 }

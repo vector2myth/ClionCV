@@ -7,9 +7,10 @@
 #include "constructors/SimpleFactory.h"
 #include "constructors/FactoryMethod.h"
 #include "constructors/AbstractFactory.h"
+#include "constructors/BuilderPattern.h"
 
 int main() {
-    runAbstractFactory();
+    runBuilderPattern();
 
     return 0;
 }

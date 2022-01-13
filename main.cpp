@@ -8,9 +8,11 @@
 #include "constructors/FactoryMethod.h"
 #include "constructors/AbstractFactory.h"
 #include "constructors/BuilderPattern.h"
+#include "constructors/PrototypePattern.h"
+#include "constructors/Singleton.h"
 
 int main() {
-    runBuilderPattern();
+    runSingleton();
 
     return 0;
 }

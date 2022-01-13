@@ -148,3 +148,26 @@ double Line::getLength(void) {
 }
 
 // 析构函数，会在每次删除创建的对象时执行，加上波浪号~作为前缀
+
+void stl1(){
+    vector<int> vec;
+    int i;
+
+    cout<<vec.size()<<endl;
+
+    for(i=0;i<5;i++){
+        vec.push_back(i);
+    }
+    cout<<vec.size()<<endl;
+
+    for(auto i:vec){
+        cout<<i<<endl;
+    }
+    cout<<"使用STL的迭代器访问"<<endl;
+
+    vector<int>::iterator v=vec.begin();
+    while (v!=vec.end()){
+        cout<<*v<<endl;
+        v++;    // 指针移动
+    }
+}
